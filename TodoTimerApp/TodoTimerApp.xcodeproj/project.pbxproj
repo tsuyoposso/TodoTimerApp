@@ -13,6 +13,7 @@
 		FE2507412351DEE600E8A252 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE25073F2351DEE600E8A252 /* Main.storyboard */; };
 		FE2507432351DEEB00E8A252 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2507422351DEEB00E8A252 /* Assets.xcassets */; };
 		FE2507462351DEEB00E8A252 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2507442351DEEB00E8A252 /* LaunchScreen.storyboard */; };
+		FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25074D2351DF5500E8A252 /* RecordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FE2507422351DEEB00E8A252 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE2507452351DEEB00E8A252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE2507472351DEEB00E8A252 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE25074D2351DF5500E8A252 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				FE2507422351DEEB00E8A252 /* Assets.xcassets */,
 				FE2507442351DEEB00E8A252 /* LaunchScreen.storyboard */,
 				FE2507472351DEEB00E8A252 /* Info.plist */,
+				FE25074D2351DF5500E8A252 /* RecordViewController.swift */,
 			);
 			path = TodoTimerApp;
 			sourceTree = "<group>";
@@ -141,6 +144,7 @@
 				FE25073E2351DEE600E8A252 /* ViewController.swift in Sources */,
 				FE25073A2351DEE600E8A252 /* AppDelegate.swift in Sources */,
 				FE25073C2351DEE600E8A252 /* SceneDelegate.swift in Sources */,
+				FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
