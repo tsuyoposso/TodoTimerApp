@@ -8,7 +8,13 @@
 
 import UIKit
 
-class RecordViewController: UIViewController {
+class RecordViewController: UIViewController, UITableViewDelegate,UITableViewDataSource {
+
+    
+    var toDo = String()
+    var estimateTime = String()
+    var actualTime = String()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,6 +23,15 @@ class RecordViewController: UIViewController {
     }
     
 
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        <#code#>
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        <#code#>
+    }
+    
+    
     /*
     // MARK: - Navigation
 
