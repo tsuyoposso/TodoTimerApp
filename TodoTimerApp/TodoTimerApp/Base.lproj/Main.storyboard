@@ -72,13 +72,57 @@
                                     <action selector="clickStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7KW-aB-5h4"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-2X-Ud6">
+                                <rect key="frame" x="120" y="269" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="done-button"/>
+                                <connections>
+                                    <action selector="clickDoneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EBO-Zj-ayg"/>
+                                    <action selector="clickStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rAR-g8-scb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9i6-Vd-Zau">
+                                <rect key="frame" x="40" y="369" width="240" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="60"/>
+                                <color key="textColor" red="0.055829592049121857" green="0.23461198806762695" blue="0.39366018772125244" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="✔︎ recorded!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIY-2Q-H8Y">
+                                <rect key="frame" x="107" y="473" width="106" height="19"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="16"/>
+                                <color key="textColor" red="0.94284862280000004" green="0.60533767940000005" blue="0.51493018869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRI-n4-Swe">
+                                <rect key="frame" x="46" y="294" width="35" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="reset"/>
+                                <connections>
+                                    <action selector="clickResetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3rg-vz-vrp"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yJ-oQ-60u">
+                                <rect key="frame" x="242" y="294" width="31" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="stop"/>
+                                <connections>
+                                    <action selector="clickStopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F7u-Vf-PfO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.9996522068977356" green="0.99243539571762085" blue="0.96862488985061646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="doneButton" destination="cg3-2X-Ud6" id="TFr-Nz-Bpt"/>
                         <outlet property="estimateTime" destination="113-BB-2tN" id="w5c-o0-Q3X"/>
+                        <outlet property="recordedLebel" destination="NIY-2Q-H8Y" id="ejk-Gq-fiQ"/>
+                        <outlet property="resetButton" destination="JRI-n4-Swe" id="r6r-6u-mB4"/>
                         <outlet property="startButton" destination="lAO-KI-ox5" id="NPu-fn-FFl"/>
+                        <outlet property="stopButton" destination="5yJ-oQ-60u" id="0q7-yH-znA"/>
+                        <outlet property="timerLabel" destination="9i6-Vd-Zau" id="5EI-g7-p1J"/>
                         <outlet property="todo" destination="mWD-0L-OFo" id="BN7-TQ-w6Y"/>
                     </connections>
                 </viewController>
@@ -181,6 +225,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="done-button" width="300" height="300"/>
         <image name="record-icon-gray" width="20" height="20"/>
         <image name="record-icon-pink" width="20" height="20"/>
         <image name="start-button" width="300" height="300"/>
