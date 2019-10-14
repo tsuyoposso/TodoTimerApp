@@ -8,9 +8,13 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
+
+    @IBOutlet weak var todo: UITextField!
 
     @IBOutlet weak var estimateTime: UITextField!
+    
+    @IBOutlet weak var startButton: UIButton!
     
     var TimepickerView: UIPickerView = UIPickerView()
 
@@ -19,6 +23,8 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        todo.delegate = self
+        estimateTime.delegate = self
         TimepickerView.delegate = self
             
         // toolBarを作成
@@ -34,6 +40,17 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
         // estimateTimeをクリックしたらpickerViewとtoolBarを表示
         estimateTime.inputView = TimepickerView
         estimateTime.inputAccessoryView = toolbar
+        
+        // startボタンはクリックできないようにする
+        startButton.isEnabled = false
+    }
+    
+    // todoが入力された時の処理
+    @IBAction func todoCatchEvent(_ sender: Any) {
+        startButton.isEnabled = false
+        if todo.text != "" && estimateTime.text != "" {
+            startButton.isEnabled = true
+        }
     }
     
     // PickerViewの列数
@@ -54,17 +71,37 @@ class ViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     // PickerViewデータ選択時
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         estimateTime.text = TimepickerOption[row]
+        startButton.isEnabled = false
+        if todo.text != "" && estimateTime.text != "" {
+            startButton.isEnabled = true
+        }
     }
     
     // toolBarのcancelボタンをクリックした時の処理
     @objc func cancel() {
         estimateTime.text = ""
+        startButton.isEnabled = false
         estimateTime.endEditing(true)
     }
 
     // toolBarのdoneボタンをクリックした時の処理
     @objc func done() {
         estimateTime.endEditing(true)
+    }
+    
+    // returnキーをクリックした時にキーボードを閉じる
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    // タッチした時にキーボードを閉じる
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
+    // startボタンをクリックした時の処理
+    @IBAction func clickStartButton(_ sender: Any) {
     }
 
 }
