@@ -72,19 +72,10 @@
                                     <action selector="clickStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7KW-aB-5h4"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-2X-Ud6">
-                                <rect key="frame" x="120" y="269" width="80" height="80"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="done-button"/>
-                                <connections>
-                                    <action selector="clickDoneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EBO-Zj-ayg"/>
-                                    <action selector="clickStartButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="rAR-g8-scb"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="60:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9i6-Vd-Zau">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="00:00:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9i6-Vd-Zau">
                                 <rect key="frame" x="40" y="369" width="240" height="96"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="60"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="48"/>
                                 <color key="textColor" red="0.055829592049121857" green="0.23461198806762695" blue="0.39366018772125244" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -109,6 +100,14 @@
                                 <state key="normal" title="stop"/>
                                 <connections>
                                     <action selector="clickStopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F7u-Vf-PfO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-2X-Ud6">
+                                <rect key="frame" x="120" y="269" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="done-button"/>
+                                <connections>
+                                    <action selector="clickDoneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zrP-G8-DdM"/>
                                 </connections>
                             </button>
                         </subviews>

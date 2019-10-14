@@ -26,19 +26,26 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     @IBOutlet weak var recordedLebel: UILabel!
     
-    var TimePickerView: UIPickerView = UIPickerView()
+    // estimateTimeをクリックした時に表示するPicker
+    var timePickerView: UIPickerView = UIPickerView()
 
-    let TimePickerOption = ["", "15分", "30分", "45分", "1時間", "1時間15分", "1時間30分", "1時間45分", "2時間"]
+    let timePickerOption = ["", "15分", "30分", "45分", "1時間", "1時間15分", "1時間30分", "1時間45分", "2時間"]
     
-    // TimePickerViewの上部のtoolbarを作成
+    let convertedTimePickerOption = [0, 900, 1800, 2700, 3600, 4500, 5400, 6300, 7200]
+    
+    // timePickerViewの上部のtoolbar
     let toolbar = UIToolbar()
+    
+    var timer = Timer()
+    
+    var count = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         todo.delegate = self
         estimateTime.delegate = self
-        TimePickerView.delegate = self
+        timePickerView.delegate = self
           
         // toolbarのwidth, heightなどを設定
         toolbar.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 35)
@@ -49,8 +56,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         let doneItem = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         toolbar.setItems([cancelItem, spacelItem, doneItem], animated: true)
 
-        // estimateTimeをクリックしたらTimePickerViewとtoolbarを表示
-        estimateTime.inputView = TimePickerView
+        // estimateTimeをクリックしたらtimePickerViewとtoolbarを表示
+        estimateTime.inputView = timePickerView
         estimateTime.inputAccessoryView = toolbar
         
         // startButtonはクリックできないようにしておく
@@ -79,17 +86,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     // PickerViewの行数
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return TimePickerOption.count
+        return timePickerOption.count
     }
     
     // PickerViewに表示するデータ
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return TimePickerOption[row]
+        return timePickerOption[row]
     }
     
     // PickerViewデータ選択時
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        estimateTime.text = TimePickerOption[row]
+        estimateTime.text = timePickerOption[row]
         startButton.isEnabled = false
         // todoとestimateTimeの両方が入力されていたらstartButtonをクリックできるようにする
         if todo.text != "" && estimateTime.text != "" {
@@ -127,28 +134,65 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         doneButton.isHidden = false
         stopButton.isHidden = false
         timerLabel.isHidden = false
+        doneButton.isEnabled = true
+        
+        // まだtimerをスタートさせていない場合
+        if count == 0 {
+            let timePickerOptionIndex = timePickerOption.firstIndex(of: estimateTime.text!)!
+            let formattedSetTime = formatTime(remainingTime: convertedTimePickerOption[timePickerOptionIndex])
+            timerLabel.text = formattedSetTime
+            count = convertedTimePickerOption[timePickerOptionIndex]
+        }
+        
+        timer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(updateCurrentTime), userInfo: nil, repeats: true)
     }
     
     // resetボタンをクリックした時の処理
     @IBAction func clickResetButton(_ sender: Any) {
+        timer.invalidate()
+        
+        todo.text = ""
+        estimateTime.text = ""
+        count = 0
+        // timePickerViewを一番上を選択した状態に戻す
+        timePickerView.selectRow(0, inComponent: 0, animated: true)
+        
         resetButton.isHidden = true
         doneButton.isHidden = true
         stopButton.isHidden = true
         timerLabel.isHidden = true
         recordedLebel.isHidden = true
+        startButton.isEnabled = false
         startButton.isHidden = false
-        
-        todo.text = ""
-        estimateTime.text = ""
     }
     
     // doneボタンをクリックした時の処理
     @IBAction func clickDoneButton(_ sender: Any) {
+        timer.invalidate()
+        doneButton.isEnabled = false
         recordedLebel.isHidden = false
     }
     
     // stopボタンをクリックした時の処理
     @IBAction func clickStopButton(_ sender: Any) {
+        timer.invalidate()
+        doneButton.isHidden = true
+        startButton.isHidden = false
+    }
+    
+    // 1秒ごとに実行する処理
+    @objc func updateCurrentTime() {
+        count -= 1
+        let formattedRemainingTime = formatTime(remainingTime: count)
+        timerLabel.text = formattedRemainingTime
+    }
+    
+    // 残りの秒数を表示用のフォーマットに変換する処理
+    func formatTime(remainingTime: Int) -> String {
+        let h = String(format: "%02d", remainingTime / 3600)
+        let m = String(format: "%02d", remainingTime % 3600 / 60)
+        let s = String(format: "%02d", remainingTime % 60)
+        return("\(h):\(m):\(s)")
     }
 
 }
