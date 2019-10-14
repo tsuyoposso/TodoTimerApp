@@ -42,6 +42,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     var count = 0
     
+    var formatTime: FormatTime = FormatTime()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,7 +79,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     // todoが入力された時の処理
     @IBAction func todoCatchEvent(_ sender: Any) {
-        print((todo.text! as NSString).length)
         startButton.isEnabled = false
         
         // 20文字を超えた場合はtodoErrorMessageを表示
@@ -154,7 +155,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         // まだtimerをスタートさせていない場合
         if count == 0 {
             let timePickerOptionIndex = timePickerOption.firstIndex(of: estimateTime.text!)!
-            let formattedSetTime = formatTime(remainingTime: convertedTimePickerOption[timePickerOptionIndex])
+            let formattedSetTime = formatTime.formatTime(remainingTime: convertedTimePickerOption[timePickerOptionIndex])
             timerLabel.text = formattedSetTime
             count = convertedTimePickerOption[timePickerOptionIndex]
         }
@@ -200,16 +201,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     // 1秒ごとに実行する処理
     @objc func updateCurrentTime() {
         count -= 1
-        let formattedRemainingTime = formatTime(remainingTime: count)
+        let formattedRemainingTime = formatTime.formatTime(remainingTime: count)
         timerLabel.text = formattedRemainingTime
-    }
-    
-    // 残りの秒数を表示用のフォーマットに変換する処理
-    func formatTime(remainingTime: Int) -> String {
-        let h = String(format: "%02d", remainingTime / 3600)
-        let m = String(format: "%02d", remainingTime % 3600 / 60)
-        let s = String(format: "%02d", remainingTime % 60)
-        return("\(h):\(m):\(s)")
     }
 
 }

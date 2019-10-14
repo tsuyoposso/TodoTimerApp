@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06015CC22354B357006428D5 /* FormatTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06015CC12354B357006428D5 /* FormatTime.swift */; };
 		FE25073A2351DEE600E8A252 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507392351DEE600E8A252 /* AppDelegate.swift */; };
 		FE25073C2351DEE600E8A252 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25073B2351DEE600E8A252 /* SceneDelegate.swift */; };
 		FE25073E2351DEE600E8A252 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25073D2351DEE600E8A252 /* ViewController.swift */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06015CC12354B357006428D5 /* FormatTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTime.swift; sourceTree = "<group>"; };
 		FE2507362351DEE600E8A252 /* TodoTimerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoTimerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE2507392351DEE600E8A252 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE25073B2351DEE600E8A252 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */,
 				FE2507522352DEB400E8A252 /* ConvertTime.swift */,
+				06015CC12354B357006428D5 /* FormatTime.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,6 +163,7 @@
 				FE2507532352DEB400E8A252 /* ConvertTime.swift in Sources */,
 				FE25073C2351DEE600E8A252 /* SceneDelegate.swift in Sources */,
 				FE2507512352D52300E8A252 /* ConvertTimeStamp.swift in Sources */,
+				06015CC22354B357006428D5 /* FormatTime.swift in Sources */,
 				FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
