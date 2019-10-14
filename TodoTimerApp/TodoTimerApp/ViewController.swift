@@ -132,6 +132,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         startButton.isHidden = true
         resetButton.isHidden = false
         doneButton.isHidden = false
+        stopButton.isEnabled = true
         stopButton.isHidden = false
         timerLabel.isHidden = false
         doneButton.isEnabled = true
@@ -170,12 +171,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     @IBAction func clickDoneButton(_ sender: Any) {
         timer.invalidate()
         doneButton.isEnabled = false
+        stopButton.isEnabled = false
         recordedLebel.isHidden = false
     }
     
     // stopボタンをクリックした時の処理
     @IBAction func clickStopButton(_ sender: Any) {
         timer.invalidate()
+        stopButton.isEnabled = false
         doneButton.isHidden = true
         startButton.isHidden = false
     }
