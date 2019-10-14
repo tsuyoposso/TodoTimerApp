@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var todoErrorMessage: UILabel!
+    
     @IBOutlet weak var todo: UITextField!
 
     @IBOutlet weak var estimateTime: UITextField!
@@ -60,6 +62,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         estimateTime.inputView = timePickerView
         estimateTime.inputAccessoryView = toolbar
         
+        // todoErrorMessageは非表示にしておく
+        todoErrorMessage.isHidden = true
+        
         // startButtonはクリックできないようにしておく
         startButton.isEnabled = false
         // resetボタン、doneボタン、stopボタン、timerLabel、recordedLabelは非表示にしておく
@@ -72,10 +77,19 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     // todoが入力された時の処理
     @IBAction func todoCatchEvent(_ sender: Any) {
+        print((todo.text! as NSString).length)
         startButton.isEnabled = false
-        // todoとestimateTimeの両方が入力されていたらstartButtonをクリックできるようにする
-        if todo.text != "" && estimateTime.text != "" {
-            startButton.isEnabled = true
+        
+        // 20文字を超えた場合はtodoErrorMessageを表示
+        if (todo.text! as NSString).length > 20 {
+            todoErrorMessage.isHidden = false
+        } else  {
+            todoErrorMessage.isHidden = true
+            // todoとestimateTimeの両方が入力されていたらstartButtonをクリックできるようにする
+            if todo.text != "" && estimateTime.text != "" {
+                startButton.isEnabled = true
+            }
+
         }
     }
     
@@ -98,8 +112,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         estimateTime.text = timePickerOption[row]
         startButton.isEnabled = false
-        // todoとestimateTimeの両方が入力されていたらstartButtonをクリックできるようにする
-        if todo.text != "" && estimateTime.text != "" {
+        // todoとestimateTimeの両方が入力されている&todoの文字数が20文字以内の場合、startButtonをクリックできるようにする
+        if todo.text != "" && estimateTime.text != "" && (todo.text! as NSString).length <= 20 {
             startButton.isEnabled = true
         }
     }
