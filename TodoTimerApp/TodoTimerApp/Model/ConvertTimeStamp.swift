@@ -8,17 +8,8 @@
 
 import Foundation
 
-class ConvetTimeStamp {
+class TimeStamp {
     
-    func convertTimeStamp(serverTimeStamp:CLong) -> String {
-        
-        let x = serverTimeStamp / 1000
-        let date = Date(timeIntervalSince1970: TimeInterval(x))
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-        formatter.timeStyle = .medium
-        
-        return formatter.string(from: date)
-        
-    }
+
+    
 }

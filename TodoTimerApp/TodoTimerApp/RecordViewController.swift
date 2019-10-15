@@ -22,6 +22,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recordTableView: UITableView!
     
     var formatTime = FormatTime()
+    var contents = [Content]()
     var todos = [Date: [Content]]()
     var dateOrder = [Date]()
     
@@ -44,11 +45,15 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         f.dateFormat = "yyyy/MM/dd"
 
         // サンプルのを用意
-        let contents = [Content(todo: "物理", estimate: 1234, actual: 1345, date: f.date(from: "2019/10/11")!),
-                        Content(todo: "化学", estimate: 4312, actual: 4444, date: f.date(from: "2019/10/11")!),
-                        Content(todo: "英語", estimate: 1434, actual: 1545, date: f.date(from: "2019/10/12")!),
-                        Content(todo: "数学", estimate: 2222, actual: 2145, date: f.date(from: "2019/10/14")!),
-                        Content(todo: "国語", estimate: 4321, actual: 5333, date: f.date(from: "2019/10/14")!)]
+//        let contents = [Content(todo: "物理", estimate: 1234, actual: 1345, date: f.date(from: "2019/10/11")!),
+//                        Content(todo: "化学", estimate: 4312, actual: 4444, date: f.date(from: "2019/10/11")!),
+//                        Content(todo: "英語", estimate: 1434, actual: 1545, date: f.date(from: "2019/10/12")!),
+//                        Content(todo: "数学", estimate: 2222, actual: 2145, date: f.date(from: "2019/10/14")!),
+//                        Content(todo: "国語", estimate: 4321, actual: 5333, date: f.date(from: "2019/10/14")!)]
+        
+        if UserDefaults.standard.object(forKey: "Contents") != nil {
+            contents = UserDefaults.standard.object(forKey: "contents") as! [Content]
+        }
 
         // contents内のdate(日付)でグルーピングして、[Date: [Content]]型にキャストする
         todos = Dictionary(grouping: contents) { content -> Date in
