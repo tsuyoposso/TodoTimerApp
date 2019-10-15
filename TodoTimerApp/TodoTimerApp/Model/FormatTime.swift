@@ -9,7 +9,7 @@
 import Foundation
 
 class FormatTime {
-    
+
     // 秒数をhh:mm:ssのフォーマットに変換する処理
     func formatTime(remainingTime: Int) -> String {
         let h = String(format: "%02d", remainingTime / 3600)
@@ -17,5 +17,4 @@ class FormatTime {
         let s = String(format: "%02d", remainingTime % 60)
         return("\(h):\(m):\(s)")
     }
-    
 }
