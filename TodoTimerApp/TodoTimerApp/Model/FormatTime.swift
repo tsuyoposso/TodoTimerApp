@@ -1,15 +1,16 @@
 //
-//  ConvertTime.swift
+//  FormatTime.swift
 //  TodoTimerApp
 //
-//  Created by 長坂豪士 on 2019/10/13.
+//  Created by 西宇絢加 on 2019/10/14.
 //  Copyright © 2019 Tsuyoshi Nagasaka. All rights reserved.
 //
 
 import Foundation
 
 class FormatTime {
-    // 残りの秒数を表示用のフォーマットに変換する処理
+
+    // 秒数をhh:mm:ssのフォーマットに変換する処理
     func formatTime(remainingTime: Int) -> String {
         let h = String(format: "%02d", remainingTime / 3600)
         let m = String(format: "%02d", remainingTime % 3600 / 60)
@@ -17,6 +18,3 @@ class FormatTime {
         return("\(h):\(m):\(s)")
     }
 }
-
-
-

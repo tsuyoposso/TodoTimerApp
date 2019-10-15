@@ -86,20 +86,12 @@
                                 <color key="textColor" red="0.94284862280000004" green="0.60533767940000005" blue="0.51493018869999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRI-n4-Swe">
-                                <rect key="frame" x="46" y="294" width="35" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JRI-n4-Swe">
+                                <rect key="frame" x="32" y="269" width="80" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="reset"/>
+                                <state key="normal" image="reset-button"/>
                                 <connections>
                                     <action selector="clickResetButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3rg-vz-vrp"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yJ-oQ-60u">
-                                <rect key="frame" x="242" y="294" width="31" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="stop"/>
-                                <connections>
-                                    <action selector="clickStopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F7u-Vf-PfO"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cg3-2X-Ud6">
@@ -110,6 +102,21 @@
                                     <action selector="clickDoneButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zrP-G8-DdM"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5yJ-oQ-60u">
+                                <rect key="frame" x="208" y="269" width="80" height="80"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" image="stop-button"/>
+                                <connections>
+                                    <action selector="clickStopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="F7u-Vf-PfO"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="todoは20文字以内で入力してください" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBo-uW-NZB">
+                                <rect key="frame" x="40" y="105" width="212" height="14"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Menlo-Regular" family="Menlo" pointSize="12"/>
+                                <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.9996522068977356" green="0.99243539571762085" blue="0.96862488985061646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -123,6 +130,7 @@
                         <outlet property="stopButton" destination="5yJ-oQ-60u" id="0q7-yH-znA"/>
                         <outlet property="timerLabel" destination="9i6-Vd-Zau" id="5EI-g7-p1J"/>
                         <outlet property="todo" destination="mWD-0L-OFo" id="BN7-TQ-w6Y"/>
+                        <outlet property="todoErrorMessage" destination="oBo-uW-NZB" id="LeV-UG-be0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -224,10 +232,12 @@
         </scene>
     </scenes>
     <resources>
-        <image name="done-button" width="300" height="300"/>
+        <image name="done-button" width="500" height="500"/>
         <image name="record-icon-gray" width="20" height="20"/>
         <image name="record-icon-pink" width="20" height="20"/>
-        <image name="start-button" width="300" height="300"/>
+        <image name="reset-button" width="500" height="500"/>
+        <image name="start-button" width="500" height="500"/>
+        <image name="stop-button" width="500" height="500"/>
         <image name="timer-icon-gray" width="20" height="20"/>
         <image name="timer-icon-pink" width="20" height="20"/>
     </resources>

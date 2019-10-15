@@ -10,6 +10,8 @@ import UIKit
 
 class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource {
 
+    @IBOutlet weak var todoErrorMessage: UILabel!
+    
     @IBOutlet weak var todo: UITextField!
 
     @IBOutlet weak var estimateTime: UITextField!
@@ -40,6 +42,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     var count = 0
     
+    var formatTime: FormatTime = FormatTime()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -60,6 +64,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         estimateTime.inputView = timePickerView
         estimateTime.inputAccessoryView = toolbar
         
+        // todoErrorMessageは非表示にしておく
+        todoErrorMessage.isHidden = true
+        
         // startButtonはクリックできないようにしておく
         startButton.isEnabled = false
         // resetボタン、doneボタン、stopボタン、timerLabel、recordedLabelは非表示にしておく
@@ -73,9 +80,17 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     // todoが入力された時の処理
     @IBAction func todoCatchEvent(_ sender: Any) {
         startButton.isEnabled = false
-        // todoとestimateTimeの両方が入力されていたらstartButtonをクリックできるようにする
-        if todo.text != "" && estimateTime.text != "" {
-            startButton.isEnabled = true
+        
+        // 20文字を超えた場合はtodoErrorMessageを表示
+        if (todo.text! as NSString).length > 20 {
+            todoErrorMessage.isHidden = false
+        } else  {
+            todoErrorMessage.isHidden = true
+            // todoとestimateTimeの両方が入力されていたらstartButtonをクリックできるようにする
+            if todo.text != "" && estimateTime.text != "" {
+                startButton.isEnabled = true
+            }
+
         }
     }
     
@@ -98,8 +113,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         estimateTime.text = timePickerOption[row]
         startButton.isEnabled = false
-        // todoとestimateTimeの両方が入力されていたらstartButtonをクリックできるようにする
-        if todo.text != "" && estimateTime.text != "" {
+        // todoとestimateTimeの両方が入力されている&todoの文字数が20文字以内の場合、startButtonをクリックできるようにする
+        if todo.text != "" && estimateTime.text != "" && (todo.text! as NSString).length <= 20 {
             startButton.isEnabled = true
         }
     }
@@ -132,6 +147,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         startButton.isHidden = true
         resetButton.isHidden = false
         doneButton.isHidden = false
+        stopButton.isEnabled = true
         stopButton.isHidden = false
         timerLabel.isHidden = false
         doneButton.isEnabled = true
@@ -139,7 +155,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         // まだtimerをスタートさせていない場合
         if count == 0 {
             let timePickerOptionIndex = timePickerOption.firstIndex(of: estimateTime.text!)!
-            let formattedSetTime = formatTime(remainingTime: convertedTimePickerOption[timePickerOptionIndex])
+            let formattedSetTime = formatTime.formatTime(remainingTime: convertedTimePickerOption[timePickerOptionIndex])
             timerLabel.text = formattedSetTime
             count = convertedTimePickerOption[timePickerOptionIndex]
         }
@@ -170,12 +186,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     @IBAction func clickDoneButton(_ sender: Any) {
         timer.invalidate()
         doneButton.isEnabled = false
+        stopButton.isEnabled = false
         recordedLebel.isHidden = false
     }
     
     // stopボタンをクリックした時の処理
     @IBAction func clickStopButton(_ sender: Any) {
         timer.invalidate()
+        stopButton.isEnabled = false
         doneButton.isHidden = true
         startButton.isHidden = false
     }
@@ -183,16 +201,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     // 1秒ごとに実行する処理
     @objc func updateCurrentTime() {
         count -= 1
-        let formattedRemainingTime = formatTime(remainingTime: count)
+        let formattedRemainingTime = formatTime.formatTime(remainingTime: count)
         timerLabel.text = formattedRemainingTime
-    }
-    
-    // 残りの秒数を表示用のフォーマットに変換する処理
-    func formatTime(remainingTime: Int) -> String {
-        let h = String(format: "%02d", remainingTime / 3600)
-        let m = String(format: "%02d", remainingTime % 3600 / 60)
-        let s = String(format: "%02d", remainingTime % 60)
-        return("\(h):\(m):\(s)")
     }
 
 }
