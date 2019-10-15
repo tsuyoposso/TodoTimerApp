@@ -28,6 +28,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     
     @IBOutlet weak var recordedLebel: UILabel!
     
+    // 保存するデータのオブジェクトとそれを格納する配列を用意
+    var content = [Content]()
+    var contents = [[Content]]()
+    
     // estimateTimeをクリックした時に表示するPicker
     var timePickerView: UIPickerView = UIPickerView()
 
@@ -50,7 +54,10 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         todo.delegate = self
         estimateTime.delegate = self
         timePickerView.delegate = self
-          
+
+        // データを格納する配列を初期化する
+        initPrepare()
+        
         // toolbarのwidth, heightなどを設定
         toolbar.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 35)
 
@@ -75,6 +82,19 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         stopButton.isHidden = true
         timerLabel.isHidden = true
         recordedLebel.isHidden = true
+    }
+    
+    func initPrepare() {
+        let f = DateFormatter()
+        f.locale = Locale(identifier: "en_US_POSIX")
+        f.dateFormat = "yyyy/MM/dd"
+        
+        let sumple1 = [Content(todo: "物理", estimate: 1234, actual: 1345, date: f.date(from: "2019/10/11")!)]
+        let sumple2 = [Content(todo: "化学", estimate: 4312, actual: 4444, date: f.date(from: "2019/10/11")!)]
+        let sumple3 = [Content(todo: "数学", estimate: 2222, actual: 2145, date: f.date(from: "2019/10/14")!)]
+        contents.append(sumple1)
+        contents.append(sumple2)
+        contents.append(sumple3)
     }
     
     // todoが入力された時の処理
@@ -187,7 +207,39 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         timer.invalidate()
         doneButton.isEnabled = false
         stopButton.isEnabled = false
+        resetButton.isEnabled = false
         recordedLebel.isHidden = false
+        
+        // データをcontentに格納して、contentsにappend
+        // さらにUserDefaultsに保存する
+        let todoString:String = todo.text!
+        var estimateInt:Int = Int()
+        var auctualInt:Int = Int()
+        let now:Date = Date()
+        
+        let index = timePickerOption.firstIndex(of: estimateTime.text!)
+        estimateInt = convertedTimePickerOption[index!]
+        auctualInt = estimateInt - count
+        
+        // done!押下時の時間を"yyyy/mm/dd"に変換する
+        let f = DateFormatter()
+        f.timeStyle = .none
+        f.dateStyle = .medium
+        f.locale = Locale(identifier: "ja_JP")
+        let s = f.string(from: now)
+        
+        // contentに書き込み、contentsにappend
+        content = [Content(todo: todoString, estimate: estimateInt, actual: auctualInt, date: f.date(from: s)!)]
+        contents.append(content)
+        
+        // UserDefaultsに保存
+        UserDefaults.standard.set(contents, forKey: "contents")
+        
+        // segueでRecordVCに遷移する、done!押下後1秒後に遷移する
+        
+        
+        
+        
     }
     
     // stopボタンをクリックした時の処理

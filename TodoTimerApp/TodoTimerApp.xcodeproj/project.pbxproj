@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		06015CC22354B357006428D5 /* FormatTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06015CC12354B357006428D5 /* FormatTime.swift */; };
 		FE25073A2351DEE600E8A252 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507392351DEE600E8A252 /* AppDelegate.swift */; };
 		FE25073C2351DEE600E8A252 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25073B2351DEE600E8A252 /* SceneDelegate.swift */; };
 		FE25073E2351DEE600E8A252 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25073D2351DEE600E8A252 /* ViewController.swift */; };
@@ -18,6 +17,7 @@
 		FE2507512352D52300E8A252 /* ConvertTimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */; };
 		FE2507532352DEB400E8A252 /* FormatTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507522352DEB400E8A252 /* FormatTime.swift */; };
 		FE25077923546A2100E8A252 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25077823546A2100E8A252 /* Content.swift */; };
+		FE25078223559C7500E8A252 /* memo in Resources */ = {isa = PBXBuildFile; fileRef = FE25078123559C7500E8A252 /* memo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +34,7 @@
 		FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertTimeStamp.swift; sourceTree = "<group>"; };
 		FE2507522352DEB400E8A252 /* FormatTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTime.swift; sourceTree = "<group>"; };
 		FE25077823546A2100E8A252 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		FE25078123559C7500E8A252 /* memo */ = {isa = PBXFileReference; lastKnownFileType = text; path = memo; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +53,7 @@
 			children = (
 				FE2507382351DEE600E8A252 /* TodoTimerApp */,
 				FE2507372351DEE600E8A252 /* Products */,
+				FE25077B235593F900E8A252 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -66,6 +68,7 @@
 		FE2507382351DEE600E8A252 /* TodoTimerApp */ = {
 			isa = PBXGroup;
 			children = (
+				FE25078023559C5500E8A252 /* Memo */,
 				FE25074F2352D4C000E8A252 /* Model */,
 				FE2507392351DEE600E8A252 /* AppDelegate.swift */,
 				FE25073B2351DEE600E8A252 /* SceneDelegate.swift */,
@@ -87,6 +90,22 @@
 				FE25077823546A2100E8A252 /* Content.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		FE25077B235593F900E8A252 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				06015CC12354B357006428D5 /* FormatTime.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		FE25078023559C5500E8A252 /* Memo */ = {
+			isa = PBXGroup;
+			children = (
+				FE25078123559C7500E8A252 /* memo */,
+			);
+			path = Memo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +168,7 @@
 			files = (
 				FE2507462351DEEB00E8A252 /* LaunchScreen.storyboard in Resources */,
 				FE2507432351DEEB00E8A252 /* Assets.xcassets in Resources */,
+				FE25078223559C7500E8A252 /* memo in Resources */,
 				FE2507412351DEE600E8A252 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,7 +186,6 @@
 				FE2507532352DEB400E8A252 /* FormatTime.swift in Sources */,
 				FE25073C2351DEE600E8A252 /* SceneDelegate.swift in Sources */,
 				FE2507512352D52300E8A252 /* ConvertTimeStamp.swift in Sources */,
-				06015CC22354B357006428D5 /* FormatTime.swift in Sources */,
 				FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
