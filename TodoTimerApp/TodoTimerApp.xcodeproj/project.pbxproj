@@ -15,7 +15,8 @@
 		FE2507462351DEEB00E8A252 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2507442351DEEB00E8A252 /* LaunchScreen.storyboard */; };
 		FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25074D2351DF5500E8A252 /* RecordViewController.swift */; };
 		FE2507512352D52300E8A252 /* ConvertTimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */; };
-		FE2507532352DEB400E8A252 /* ConvertTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507522352DEB400E8A252 /* ConvertTime.swift */; };
+		FE2507532352DEB400E8A252 /* FormatTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507522352DEB400E8A252 /* FormatTime.swift */; };
+		FE25077923546A2100E8A252 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25077823546A2100E8A252 /* Content.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +30,8 @@
 		FE2507472351DEEB00E8A252 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE25074D2351DF5500E8A252 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertTimeStamp.swift; sourceTree = "<group>"; };
-		FE2507522352DEB400E8A252 /* ConvertTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertTime.swift; sourceTree = "<group>"; };
+		FE2507522352DEB400E8A252 /* FormatTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTime.swift; sourceTree = "<group>"; };
+		FE25077823546A2100E8A252 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,7 +81,8 @@
 			isa = PBXGroup;
 			children = (
 				FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */,
-				FE2507522352DEB400E8A252 /* ConvertTime.swift */,
+				FE2507522352DEB400E8A252 /* FormatTime.swift */,
+				FE25077823546A2100E8A252 /* Content.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -157,7 +160,8 @@
 			files = (
 				FE25073E2351DEE600E8A252 /* ViewController.swift in Sources */,
 				FE25073A2351DEE600E8A252 /* AppDelegate.swift in Sources */,
-				FE2507532352DEB400E8A252 /* ConvertTime.swift in Sources */,
+				FE25077923546A2100E8A252 /* Content.swift in Sources */,
+				FE2507532352DEB400E8A252 /* FormatTime.swift in Sources */,
 				FE25073C2351DEE600E8A252 /* SceneDelegate.swift in Sources */,
 				FE2507512352D52300E8A252 /* ConvertTimeStamp.swift in Sources */,
 				FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */,
