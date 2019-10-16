@@ -63,6 +63,10 @@
                                 <state key="normal" title="record" image="record-icon-gray">
                                     <color key="titleColor" red="0.71369510889999999" green="0.71376186610000003" blue="0.70980411769999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="goToRecord:" destination="BYZ-38-t0r" eventType="touchUpInside" id="064-hI-t5k"/>
+                                    <segue destination="Arx-pL-NbI" kind="presentation" identifier="record2" modalPresentationStyle="fullScreen" modalTransitionStyle="flipHorizontal" id="5ox-Vh-wP3"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lAO-KI-ox5">
                                 <rect key="frame" x="120" y="269" width="80" height="80"/>
@@ -131,6 +135,7 @@
                         <outlet property="timerLabel" destination="9i6-Vd-Zau" id="5EI-g7-p1J"/>
                         <outlet property="todo" destination="mWD-0L-OFo" id="BN7-TQ-w6Y"/>
                         <outlet property="todoErrorMessage" destination="oBo-uW-NZB" id="LeV-UG-be0"/>
+                        <segue destination="Arx-pL-NbI" kind="presentation" identifier="record" modalPresentationStyle="fullScreen" modalTransitionStyle="coverVertical" id="lGV-Jn-UTE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -206,6 +211,9 @@
                                 <state key="normal" title="time keeper" image="timer-icon-gray">
                                     <color key="titleColor" red="0.71369510889999999" green="0.71376186610000003" blue="0.70980411769999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 </state>
+                                <connections>
+                                    <action selector="backToTimeKeeper:" destination="Arx-pL-NbI" eventType="touchUpInside" id="e8e-6W-ocw"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mkz-Va-tMB">
                                 <rect key="frame" x="186" y="524" width="87" height="45"/>
@@ -221,6 +229,7 @@
                         <color key="backgroundColor" red="0.9996069073677063" green="0.99248307943344116" blue="0.96470266580581665" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <viewLayoutGuide key="safeArea" id="CwG-49-gCQ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="6XU-QH-0KG"/>
                     <connections>
                         <outlet property="recordTableView" destination="yrT-0r-AwF" id="QuN-jE-wkD"/>
                         <outlet property="titleLabel" destination="YKQ-xy-aUT" id="1DL-5T-6X6"/>
@@ -241,4 +250,7 @@
         <image name="timer-icon-gray" width="20" height="20"/>
         <image name="timer-icon-pink" width="20" height="20"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="lGV-Jn-UTE"/>
+    </inferredMetricsTieBreakers>
 </document>

@@ -22,7 +22,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recordTableView: UITableView!
     
     var formatTime = FormatTime()
-    var contents = [Content]()
+//    var contents = [Content]()
     var todos = [Date: [Content]]()
     var dateOrder = [Date]()
     
@@ -40,9 +40,9 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private func prepare() {
         // 日付を用意して、"yyyy/MM/dd"に変換
-        let f = DateFormatter()
-        f.locale = Locale(identifier: "en_US_POSIX")
-        f.dateFormat = "yyyy/MM/dd"
+//        let f = DateFormatter()
+//        f.locale = Locale(identifier: "en_US_POSIX")
+//        f.dateFormat = "yyyy/MM/dd"
 
         // サンプルのを用意
 //        let contents = [Content(todo: "物理", estimate: 1234, actual: 1345, date: f.date(from: "2019/10/11")!),
@@ -51,10 +51,16 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
 //                        Content(todo: "数学", estimate: 2222, actual: 2145, date: f.date(from: "2019/10/14")!),
 //                        Content(todo: "国語", estimate: 4321, actual: 5333, date: f.date(from: "2019/10/14")!)]
         
-        if UserDefaults.standard.object(forKey: "Contents") != nil {
-            contents = UserDefaults.standard.object(forKey: "contents") as! [Content]
-        }
+//        if UserDefaults.standard.object(forKey: "Contents") != nil {
+//            contents = UserDefaults.standard.object(forKey: "contents") as! [Content]
+//        }
+        var contents: [Content]!
+        let contentsData = UserDefaults.standard.object(forKey: "contents") as? Data
+        guard let t = contentsData else { return }
+        let unArchiveData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(t)
+        contents = unArchiveData as? [Content] ?? [Content]()
 
+        print(contents!)
         // contents内のdate(日付)でグルーピングして、[Date: [Content]]型にキャストする
         todos = Dictionary(grouping: contents) { content -> Date in
             return content.date
@@ -137,4 +143,12 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return label
     }
 
+    @IBAction func backToTimeKeeper(_ sender: Any) {
+
+        dismiss(animated: true, completion: nil)        
+    }
+    
+    
+    
+    
 }
