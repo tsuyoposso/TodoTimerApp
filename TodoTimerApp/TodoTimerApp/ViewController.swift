@@ -199,6 +199,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         doneButton.isHidden = true
         stopButton.isHidden = true
         timerLabel.isHidden = true
+        timerLabel.textColor = UIColor(red: 0/255, green: 57/255, blue: 102/255, alpha: 1)
         recordedLebel.isHidden = true
         startButton.isEnabled = false
         startButton.isHidden = false
@@ -240,6 +241,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         UserDefaults.standard.set(encodedContents, forKey: "contents")
         UserDefaults.standard.synchronize()
         
+
         // segueでRecordVCに遷移する、done!押下後1秒後に遷移する
         performSegue(withIdentifier: "record", sender: nil)
         
@@ -257,6 +259,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
     // 1秒ごとに実行する処理
     @objc func updateCurrentTime() {
         count -= 1
+        if count < 0 {
+            timerLabel.textColor = UIColor.red
+        }
         let formattedRemainingTime = formatTime.formatTime(remainingTime: count)
         timerLabel.text = formattedRemainingTime
     }

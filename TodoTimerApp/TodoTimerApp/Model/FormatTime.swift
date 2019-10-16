@@ -12,9 +12,10 @@ class FormatTime {
 
     // 秒数をhh:mm:ssのフォーマットに変換する処理
     func formatTime(remainingTime: Int) -> String {
-        let h = String(format: "%02d", remainingTime / 3600)
-        let m = String(format: "%02d", remainingTime % 3600 / 60)
-        let s = String(format: "%02d", remainingTime % 60)
+        let absoluteRemainingTime = abs(remainingTime)
+        let h = String(format: "%02d", absoluteRemainingTime / 3600)
+        let m = String(format: "%02d", absoluteRemainingTime % 3600 / 60)
+        let s = String(format: "%02d", absoluteRemainingTime % 60)
         return("\(h):\(m):\(s)")
     }
 }
