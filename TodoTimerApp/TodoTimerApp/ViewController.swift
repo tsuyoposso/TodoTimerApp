@@ -57,8 +57,11 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         estimateTime.delegate = self
         timePickerView.delegate = self
 
-        // データを格納する配列を初期化する
-        // initPrepare()
+        // UserDefaultsの呼び出しとcontentsの更新
+        let contentsData = UserDefaults.standard.object(forKey: "contents") as? Data
+        guard let t = contentsData else { return }
+        let unArchiveData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(t)
+        contents = unArchiveData as? [Content] ?? [Content]()
         
         // toolbarのwidth, heightなどを設定
         toolbar.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 35)
@@ -84,6 +87,26 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         stopButton.isHidden = true
         timerLabel.isHidden = true
         recordedLebel.isHidden = true
+    }
+    
+    // 戻ってきたときに画面をリセットする
+    override func viewWillAppear(_ animated: Bool) {
+        timer.invalidate()
+        
+        todo.text = ""
+        estimateTime.text = ""
+        count = 0
+        // timePickerViewを一番上を選択した状態に戻す
+        timePickerView.selectRow(0, inComponent: 0, animated: true)
+        
+        resetButton.isHidden = true
+        doneButton.isHidden = true
+        stopButton.isHidden = true
+        timerLabel.isHidden = true
+        timerLabel.textColor = UIColor(red: 0/255, green: 57/255, blue: 102/255, alpha: 1)
+        recordedLebel.isHidden = true
+        startButton.isEnabled = false
+        startButton.isHidden = false
     }
     
     func initPrepare() {
