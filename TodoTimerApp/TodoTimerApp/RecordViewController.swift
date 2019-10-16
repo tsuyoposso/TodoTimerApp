@@ -110,14 +110,17 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         // todoの表示
         let toDoLabel = cell.viewWithTag(1) as! UILabel
+        toDoLabel.font = UIFont(name: "Menlo", size: 17.0)
         toDoLabel.text = content.todo
         
         // estimateの表示
         let estimateTimeLabel = cell.viewWithTag(2) as! UILabel
+        estimateTimeLabel.font = UIFont(name: "Menlo", size: 15.0)
         estimateTimeLabel.text = formatTime.formatTime(remainingTime: content.estimate)
         
         // actualの表示
         let actualTimeLabel = cell.viewWithTag(3) as! UILabel
+        actualTimeLabel.font = UIFont(name: "Menlo", size: 15.0)
         actualTimeLabel.text = formatTime.formatTime(remainingTime: content.actual)
  
         print("セルを返す")
@@ -136,6 +139,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let targetDate = dateOrder[section]
 
         let label = UILabel()
+        label.font = UIFont(name: "Menlo", size: 15.0)
         label.backgroundColor = .lightGray
         label.textColor = .white
         label.text = formatter.string(from: targetDate)
