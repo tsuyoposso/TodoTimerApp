@@ -57,6 +57,8 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         estimateTime.delegate = self
         timePickerView.delegate = self
         
+        initPrepare()
+        
         // toolbarのwidth, heightなどを設定
         toolbar.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 35)
 
@@ -90,7 +92,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         
     }
     
-    // 戻ってきたときに画面をリセットする
+    // 戻ってきたときに画面をリセット, contentsを更新
     override func viewWillAppear(_ animated: Bool) {
         timer.invalidate()
         
@@ -108,6 +110,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         recordedLebel.isHidden = true
         startButton.isEnabled = false
         startButton.isHidden = false
+        
+        // UserDefaultsの呼び出し(contentsの更新)
+        let contentsData = UserDefaults.standard.object(forKey: "contents") as? Data
+        guard let t = contentsData else { return }
+        let unArchiveData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(t)
+        contents = unArchiveData as? [Content] ?? [Content]()
+        
     }
     
     func initPrepare() {
@@ -117,7 +126,7 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         
         let sumple1 = Content(todo: "物理", estimate: 1234, actual: 1345, date: f.date(from: "2019/10/11")!)
         let sumple2 = Content(todo: "化学", estimate: 4312, actual: 4444, date: f.date(from: "2019/10/11")!)
-        let sumple3 = Content(todo: "数学", estimate: 2222, actual: 2145, date: f.date(from: "2019/10/14")!)
+        let sumple3 = Content(todo: "数学", estimate: 2222, actual: 2145, date: f.date(from: "2019/10/11")!)
         contents.append(sumple1)
         contents.append(sumple2)
         contents.append(sumple3)
@@ -256,9 +265,9 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         f.dateFormat = "yyyy/MM/dd"
         let s = f.string(from: now)
         
-        // contentに書き込み、contentsにappend
+        // contentに書き込み
         content = Content(todo: todoString, estimate: estimateInt, actual: actualInt, date: f.date(from: s)!)
-        // contents.append(content)
+        // contentsの先頭に追加する
         contents.insert(content, at: 0)
 
         // UserDefaultsに保存
