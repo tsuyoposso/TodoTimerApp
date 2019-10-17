@@ -276,7 +276,12 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         UserDefaults.standard.synchronize()
         
         // segueでRecordVCに遷移する、done!押下後1秒後に遷移する
-        performSegue(withIdentifier: "record", sender: nil)
+        // performSegue(withIdentifier: "record", sender: nil)
+        DispatchQueue.global().async {
+            DispatchQueue.main.asyncAfter(deadline: .now()+1.0) {
+                self.performSegue(withIdentifier: "record", sender: nil)
+            }
+        }
         
         
     }
