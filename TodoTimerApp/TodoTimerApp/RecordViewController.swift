@@ -8,12 +8,6 @@
 
 import UIKit
 
-//struct Content {
-//    let todo: String
-//    let estimate: Int
-//    let actual: Int
-//    let date: Date
-//}
 
 class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -39,21 +33,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     private func prepare() {
-        // 日付を用意して、"yyyy/MM/dd"に変換
-//        let f = DateFormatter()
-//        f.locale = Locale(identifier: "en_US_POSIX")
-//        f.dateFormat = "yyyy/MM/dd"
-
-        // サンプルのを用意
-//        let contents = [Content(todo: "物理", estimate: 1234, actual: 1345, date: f.date(from: "2019/10/11")!),
-//                        Content(todo: "化学", estimate: 4312, actual: 4444, date: f.date(from: "2019/10/11")!),
-//                        Content(todo: "英語", estimate: 1434, actual: 1545, date: f.date(from: "2019/10/12")!),
-//                        Content(todo: "数学", estimate: 2222, actual: 2145, date: f.date(from: "2019/10/14")!),
-//                        Content(todo: "国語", estimate: 4321, actual: 5333, date: f.date(from: "2019/10/14")!)]
-        
-//        if UserDefaults.standard.object(forKey: "Contents") != nil {
-//            contents = UserDefaults.standard.object(forKey: "contents") as! [Content]
-//        }
+        // UserDefaultsの読み込み
         var contents: [Content]!
         let contentsData = UserDefaults.standard.object(forKey: "contents") as? Data
         guard let t = contentsData else { return }
@@ -121,6 +101,12 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         // actualの表示
         let actualTimeLabel = cell.viewWithTag(3) as! UILabel
         actualTimeLabel.font = UIFont(name: "Menlo", size: 15.0)
+        // 配色の設定
+        if content.estimate >= content.actual {
+            actualTimeLabel.textColor = UIColor(red: 78/255, green: 161/255, blue: 213/255, alpha: 1.0)
+        } else {
+            actualTimeLabel.textColor = UIColor(red: 233/255, green: 64/255, blue: 65/255, alpha: 1.0)
+        }
         actualTimeLabel.text = formatTime.formatTime(remainingTime: content.actual)
  
         print("セルを返す")
@@ -130,7 +116,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // セルの高さ
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50.0
+        return 60.0
     }
     
     // 日付セクションのフォーマット

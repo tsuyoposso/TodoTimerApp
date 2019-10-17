@@ -56,12 +56,6 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         todo.delegate = self
         estimateTime.delegate = self
         timePickerView.delegate = self
-
-        // UserDefaultsの呼び出しとcontentsの更新
-        let contentsData = UserDefaults.standard.object(forKey: "contents") as? Data
-        guard let t = contentsData else { return }
-        let unArchiveData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(t)
-        contents = unArchiveData as? [Content] ?? [Content]()
         
         // toolbarのwidth, heightなどを設定
         toolbar.frame = CGRect(x: 0, y: 100, width: view.frame.size.width, height: 35)
@@ -87,6 +81,13 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         stopButton.isHidden = true
         timerLabel.isHidden = true
         recordedLebel.isHidden = true
+        
+        // UserDefaultsの呼び出しとcontentsの更新
+        let contentsData = UserDefaults.standard.object(forKey: "contents") as? Data
+        guard let t = contentsData else { return }
+        let unArchiveData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(t)
+        contents = unArchiveData as? [Content] ?? [Content]()
+        
     }
     
     // 戻ってきたときに画面をリセットする
@@ -257,14 +258,14 @@ class ViewController: UIViewController, UITextFieldDelegate, UIPickerViewDelegat
         
         // contentに書き込み、contentsにappend
         content = Content(todo: todoString, estimate: estimateInt, actual: actualInt, date: f.date(from: s)!)
-        contents.append(content)
+        // contents.append(content)
+        contents.insert(content, at: 0)
 
         // UserDefaultsに保存
         let encodedContents = try? NSKeyedArchiver.archivedData(withRootObject: contents, requiringSecureCoding: false)
         UserDefaults.standard.set(encodedContents, forKey: "contents")
         UserDefaults.standard.synchronize()
         
-
         // segueでRecordVCに遷移する、done!押下後1秒後に遷移する
         performSegue(withIdentifier: "record", sender: nil)
         
