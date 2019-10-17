@@ -16,7 +16,7 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var recordTableView: UITableView!
     
     var formatTime = FormatTime()
-//    var contents = [Content]()
+    var contents = [Content]()
     var todos = [Date: [Content]]()
     var dateOrder = [Date]()
     
@@ -34,13 +34,11 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     private func prepare() {
         // UserDefaultsの読み込み
-        var contents: [Content]!
         let contentsData = UserDefaults.standard.object(forKey: "contents") as? Data
         guard let t = contentsData else { return }
         let unArchiveData = try? NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(t)
         contents = unArchiveData as? [Content] ?? [Content]()
 
-        print(contents!)
         // contents内のdate(日付)でグルーピングして、[Date: [Content]]型にキャストする
         todos = Dictionary(grouping: contents) { content -> Date in
             return content.date
@@ -65,16 +63,12 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     // セクション数
     func numberOfSections(in tableView: UITableView) -> Int {
-        print("セクションの数を確認")
-        print(todos.keys.count)
         return todos.keys.count
     }
 
     // セルの数
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let targetDate = dateOrder[section]
-        print("セルの数を確認")
-        print(todos[targetDate, default: []].count)
         return todos[targetDate, default: []].count
     }
     
@@ -109,7 +103,6 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         actualTimeLabel.text = formatTime.formatTime(remainingTime: content.actual)
  
-        print("セルを返す")
         return cell
         
     }
@@ -133,12 +126,42 @@ class RecordViewController: UIViewController, UITableViewDelegate, UITableViewDa
         return label
     }
 
+    // 前画面に戻る
     @IBAction func backToTimeKeeper(_ sender: Any) {
-
         dismiss(animated: true, completion: nil)        
     }
     
+    //セルの編集許可
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool
+    {
+        return true
+    }
     
-    
+    // スワイプしたセルを削除する
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == UITableViewCell.EditingStyle.delete {
+            // スワイプした日付を取得
+            let removeTergetDate = dateOrder[indexPath.section]
+            // contentsから削除するために、削除した内容と一致するcontentsのindexを取得する
+            let removeIndex = contents.firstIndex(of: (todos[removeTergetDate]?[indexPath.row])!)
+            // contentsから削除
+            contents.remove(at: removeIndex!)
+            // 削除する表示のためにtodosからも削除する
+            todos[removeTergetDate]!.remove(at: indexPath.row)
+            // 削除のアニメーション
+            tableView.deleteRows(at: [indexPath as IndexPath], with: UITableView.RowAnimation.automatic)
+            
+            // セクション内のtodoが全て消えたら日付を消したい
+//            if todos[removeTergetDate]?.count == 0 {
+//                todos.removeValue(forKey: removeTergetDate)
+//                dateOrder.remove(at: indexPath.section)
+//            }
+            // UserDefaultsを更新
+            let encodedContents = try? NSKeyedArchiver.archivedData(withRootObject: contents, requiringSecureCoding: false)
+            UserDefaults.standard.set(encodedContents, forKey: "contents")
+            UserDefaults.standard.synchronize()
+        }
+        
+    }
     
 }
