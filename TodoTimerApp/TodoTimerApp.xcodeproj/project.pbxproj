@@ -13,9 +13,15 @@
 		FE2507412351DEE600E8A252 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE25073F2351DEE600E8A252 /* Main.storyboard */; };
 		FE2507432351DEEB00E8A252 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE2507422351DEEB00E8A252 /* Assets.xcassets */; };
 		FE2507462351DEEB00E8A252 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE2507442351DEEB00E8A252 /* LaunchScreen.storyboard */; };
+		FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25074D2351DF5500E8A252 /* RecordViewController.swift */; };
+		FE2507512352D52300E8A252 /* ConvertTimeStamp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */; };
+		FE2507532352DEB400E8A252 /* FormatTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2507522352DEB400E8A252 /* FormatTime.swift */; };
+		FE25077923546A2100E8A252 /* Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE25077823546A2100E8A252 /* Content.swift */; };
+		FE25078223559C7500E8A252 /* memo in Resources */ = {isa = PBXBuildFile; fileRef = FE25078123559C7500E8A252 /* memo */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		06015CC12354B357006428D5 /* FormatTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTime.swift; sourceTree = "<group>"; };
 		FE2507362351DEE600E8A252 /* TodoTimerApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoTimerApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE2507392351DEE600E8A252 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE25073B2351DEE600E8A252 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +30,11 @@
 		FE2507422351DEEB00E8A252 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE2507452351DEEB00E8A252 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE2507472351DEEB00E8A252 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FE25074D2351DF5500E8A252 /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
+		FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertTimeStamp.swift; sourceTree = "<group>"; };
+		FE2507522352DEB400E8A252 /* FormatTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatTime.swift; sourceTree = "<group>"; };
+		FE25077823546A2100E8A252 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
+		FE25078123559C7500E8A252 /* memo */ = {isa = PBXFileReference; lastKnownFileType = text; path = memo; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +53,7 @@
 			children = (
 				FE2507382351DEE600E8A252 /* TodoTimerApp */,
 				FE2507372351DEE600E8A252 /* Products */,
+				FE25077B235593F900E8A252 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,15 +68,44 @@
 		FE2507382351DEE600E8A252 /* TodoTimerApp */ = {
 			isa = PBXGroup;
 			children = (
+				FE25078023559C5500E8A252 /* Memo */,
+				FE25074F2352D4C000E8A252 /* Model */,
 				FE2507392351DEE600E8A252 /* AppDelegate.swift */,
 				FE25073B2351DEE600E8A252 /* SceneDelegate.swift */,
 				FE25073D2351DEE600E8A252 /* ViewController.swift */,
+				FE25074D2351DF5500E8A252 /* RecordViewController.swift */,
 				FE25073F2351DEE600E8A252 /* Main.storyboard */,
 				FE2507422351DEEB00E8A252 /* Assets.xcassets */,
 				FE2507442351DEEB00E8A252 /* LaunchScreen.storyboard */,
 				FE2507472351DEEB00E8A252 /* Info.plist */,
 			);
 			path = TodoTimerApp;
+			sourceTree = "<group>";
+		};
+		FE25074F2352D4C000E8A252 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FE2507502352D52300E8A252 /* ConvertTimeStamp.swift */,
+				FE2507522352DEB400E8A252 /* FormatTime.swift */,
+				FE25077823546A2100E8A252 /* Content.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		FE25077B235593F900E8A252 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				06015CC12354B357006428D5 /* FormatTime.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		FE25078023559C5500E8A252 /* Memo */ = {
+			isa = PBXGroup;
+			children = (
+				FE25078123559C7500E8A252 /* memo */,
+			);
+			path = Memo;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,6 +168,7 @@
 			files = (
 				FE2507462351DEEB00E8A252 /* LaunchScreen.storyboard in Resources */,
 				FE2507432351DEEB00E8A252 /* Assets.xcassets in Resources */,
+				FE25078223559C7500E8A252 /* memo in Resources */,
 				FE2507412351DEE600E8A252 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -140,7 +182,11 @@
 			files = (
 				FE25073E2351DEE600E8A252 /* ViewController.swift in Sources */,
 				FE25073A2351DEE600E8A252 /* AppDelegate.swift in Sources */,
+				FE25077923546A2100E8A252 /* Content.swift in Sources */,
+				FE2507532352DEB400E8A252 /* FormatTime.swift in Sources */,
 				FE25073C2351DEE600E8A252 /* SceneDelegate.swift in Sources */,
+				FE2507512352D52300E8A252 /* ConvertTimeStamp.swift in Sources */,
+				FE25074E2351DF5500E8A252 /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,7 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWS6CUHRBX;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TodoTimerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -303,7 +349,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XWS6CUHRBX;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = TodoTimerApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
